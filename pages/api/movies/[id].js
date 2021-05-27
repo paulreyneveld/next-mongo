@@ -1,14 +1,16 @@
 import { connectToDatabase } from "../../../util/mongodb"
+import { ObjectId } from 'mongodb'
 
 export default async (req, res) => {
     const { db } = await connectToDatabase();
     const { id } = req.query;
-    const movie = null;
+    console.log(typeof id);
     console.log(id);
 
     const movie = await db
         .collection("movies")
-        .findById(id)
+        .find({ _id: ObjectId(id) })
+        .toArray();
  
     res.json(movie);
 }
