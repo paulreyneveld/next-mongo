@@ -1,8 +1,7 @@
 // pages/api/auth/[...nextauth].js
 import NextAuth from 'next-auth'
 import Providers from 'next-auth/providers'
-console.log(process.env.EMAIL_USERNAME);
-console.log(process.env.EMAIL_PASSWORD);
+
 const options = {
   site: process.env.NEXTAUTH_URL,
   providers: [
@@ -22,7 +21,11 @@ const options = {
       from: process.env.EMAIL_FROM,
     })
   ],
-  database: process.env.DATABASE_URL
+  database: process.env.DATABASE_URL,
+  session: {
+    jwt: true,
+    maxAge: 30 * 24 * 60 * 60 // 30 days
+  }
 }
 
 export default (req, res) => NextAuth(req, res, options)
