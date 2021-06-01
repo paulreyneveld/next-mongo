@@ -1,7 +1,8 @@
 // pages/api/auth/[...nextauth].js
 import NextAuth from 'next-auth'
 import Providers from 'next-auth/providers'
-
+console.log(process.env.EMAIL_USERNAME);
+console.log(process.env.EMAIL_PASSWORD);
 const options = {
   site: process.env.NEXTAUTH_URL,
   providers: [
